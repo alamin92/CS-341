@@ -1,0 +1,117 @@
+// C++ program for insertion sort 
+#include <bits/stdc++.h> 
+#include <iostream>
+#include <chrono>
+#include <time.h>
+#include <fstream>
+#include <cstdlib>
+#include <fstream>
+
+using namespace std; 
+void merge(int arr[], int n, int m, int r)
+{
+   int i, j, k;
+   int n1 = m - n + 1; /*determine the size of the Left and Right arrays*/
+   int n2 = r - m;
+   int Left[n1], Right[n2];
+
+/* Fill the temp arrays */   
+   for (i = 0; i < n1; ++i)
+     Left[i] = arr[n + i];
+   for (j = 0; j < n2; ++j)
+     Right[j] = arr[m + 1 + j];
+
+   i = 0; j = 0; k = n;  
+   while (i < n1 && j < n2)  /* merge the arrays */
+   {
+     if (Left[i] <= Right[j])
+      {
+        arr[k] = Left[i];
+        ++i;
+      }
+     else
+     {
+       arr[k] = Right[j];
+       ++j;
+     } 
+    ++k;
+   }
+
+   while(i < n1)
+   {
+     arr[k] = Left[i];
+     i++;
+     k++;
+   }
+
+   while(j < n2)
+   { 
+     arr[k] = Right[j];
+     j++;
+     k++;
+   }
+   return;
+}
+
+void mergeSort(int arr[], int left, int right)
+{
+   int middle;
+   if(left < right)
+     { middle = left + (right - left)/2; /*compute the middle*/
+       mergeSort(arr, left, middle);  /* recursive calls */
+       mergeSort(arr, middle + 1, right);
+       merge(arr, left, middle, right);
+     } 
+   return;
+}
+
+void printArray(int arr[], int n) 
+{ 
+	int i; 
+	for (i = 0; i < n; i++) 
+		cout << arr[i] << " "; 
+	cout << endl; 
+} 
+
+/* Driver code */
+int main() 
+{ 
+	//int arr[] = { 12, 11, 13, 5, 6 }; 
+  int location = 0, found = 0, i = 0;
+  int key=0;
+  //int data_array[10500];
+  int arr[]={};
+ifstream data_file;
+ofstream out_file;
+
+data_file.open("Random.txt");
+
+if (!data_file){
+   cerr << "could not open file\n";
+   perror("");
+   }
+   cout << "Enter an integer to be located: ";
+  cin >> key; 
+  int sizeOfArray[5000];
+  int p = 0;
+  int search; 
+  ifstream myFile;
+  myFile.open("Random.txt");
+  myFile >> sizeOfArray[i];
+  int input = search;
+  clock_t start, end; 
+    start = clock(); 
+	int n = sizeof(arr) / sizeof(arr[0]); 
+
+	insertionSort(arr, n); 
+	printArray(arr, n); 
+  end = clock(); 
+    	double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
+	cout << "Time taken by program is : " << fixed 
+		<< time_taken;
+	cout << " sec " << endl;
+
+	return 0; 
+} 
+
+
