@@ -1,0 +1,75 @@
+#include <iostream>
+#include <chrono>
+#include <time.h>
+#include <fstream>
+
+
+using namespace std; 
+  
+void swap(int *xp, int *yp)  
+{  
+    int temp = *xp;  
+    *xp = *yp;  
+    *yp = temp;  
+}  
+  
+// A function to implement bubble sort  
+void bubbleSort(int arr[], int n)  
+{  
+    int i, j;  
+    for (i = 0; i < n-1; i++)      
+      
+    // Last i elements are already in place  
+    for (j = 0; j < n-i-1; j++)  
+        if (arr[j] > arr[j+1])  
+            swap(&arr[j], &arr[j+1]);  
+}  
+  
+
+void printArray(int arr[], int size)  
+{  
+    int i;  
+    for (i = 0; i < size; i++)  
+        cout << arr[i] << " ";  
+    cout << endl;  
+}  
+
+int main()  
+{  
+
+  int arr[5000];
+ifstream data_file;
+
+data_file.open("Random.txt");
+
+if (!data_file){
+   cerr << "could not open file\n";
+   perror("");
+   }
+    
+  int sizeOfArray[5000];
+  
+  ifstream myFile;
+  myFile.open("Random.txt");
+  
+  for(int i=0; i<5001; i++){
+    myFile >> arr[i];
+  }
+
+  
+     int n = sizeof(arr)/sizeof(arr[0]);  
+    clock_t start, end; 
+    start = clock(); 
+    bubbleSort(arr, n);  
+    cout<<"Sorted array: \n";  
+    printArray(arr, n);  
+    end = clock(); 
+   
+    double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
+
+	cout << "Time taken by program is : " << fixed 
+		<< time_taken;
+	cout << " sec " << endl; 
+    return 0;  
+}  
+  
