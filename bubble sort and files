@@ -1,0 +1,99 @@
+#include <iostream> 
+#include <time.h>
+#include <cstdlib>
+#include <fstream>
+#include <chrono>
+
+
+using namespace std; 
+
+
+void swap(int *xp, int *yp)  
+{  
+    int temp = *xp;  
+    *xp = *yp;  
+    *yp = temp;  
+}  
+    
+void bubbleSort(int arr[], int n)  
+{  
+    int i, j;  
+    for (i = 0; i < n-1; i++)      
+      
+   
+    for (j = 0; j < n-i-1; j++)  
+        if (arr[j] > arr[j+1])  
+            swap(&arr[j], &arr[j+1]);  
+}  
+  
+/*
+void printArray(int arr[], int size)  
+{  
+    int i;  
+    for (i = 0; i < size; i++)  
+        cout << arr[i] << " ";  
+    cout << endl;  
+}  
+  */
+
+int binarySearch(int arr[], int l, int r, int x) 
+{ 
+    if (r >= l) { 
+        int mid = l + (r - l) / 2; 
+  
+        if (arr[mid] == x) 
+            return mid; 
+
+        if (arr[mid] > x) 
+            return binarySearch(arr, l, mid - 1, x); 
+
+        return binarySearch(arr, mid + 1, r, x); 
+    } 
+  
+
+    return -1; 
+} 
+  
+int main() 
+{ 
+  
+    int arr[10100] = { }; 
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    ifstream data_file;
+
+    data_file.open("numbers.dat");
+
+if (!data_file){
+   cerr << "could not open file\n";
+   perror("");
+   }
+    
+  //int sizeOfArray[20004];
+  
+  ifstream myFile;
+  myFile.open("numbers.dat");
+  
+  for(int i=0; i<=101001; i++){
+    myFile >> arr[i];
+  }
+
+    bubbleSort(arr, n);
+   // printArray (arr, n);
+    int x ; 
+    cout<<"enter a number to check the location\n";
+    cin>>x;
+    clock_t start, end; 
+    start = clock(); 
+
+    int result = binarySearch(arr, 0, n - 1, x); 
+    (result == -1) ? cout << "Number is not present in array"
+    : cout << "Number " << x << " is present at index " << " " << result << endl;
+    end = clock();
+    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+
+    cout << "time takes to find the number "<< time_taken << endl;
+
+    data_file.close();
+} 
+ 
