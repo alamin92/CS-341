@@ -1,0 +1,37 @@
+#include<iostream>
+
+using namespace std;
+
+double none(int x) {
+
+int i=0;
+if(x==2)
+return 1;
+else{
+  while(x>=2){
+if(x%2==0){
+x=x/2;
+cout<<x<<endl;
+}
+
+else {
+  x=3*x+1;
+  cout<<x<<endl;
+}
+i++;
+}
+cout<<"total steps needed\n"<<i<<endl;
+return 0;
+}
+}
+
+int main()
+{
+
+int n;
+cout << "insert to check how" << endl;
+cin >> n;
+cout << none(n) << endl;
+return 0;
+
+}
