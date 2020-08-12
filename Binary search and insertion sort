@@ -1,0 +1,75 @@
+//============================================================================
+// Name        : homework 4.2.cpp
+// Author      : alamin hossain
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int binarySearch(vector<int> &data, int item) {
+        int x = 0;
+        int y = data.size()-1;
+ while (x <= y)       {
+      int a=x + (y-x)/2;
+      if (data[a] == item) return a;
+
+      if (data[a] < item){
+          a = a+ 1;
+      }
+       else{
+         y = a - 1;
+       }
+        }
+         return -1;
+}
+
+void printArray(vector<int> &data) {
+        for(auto x: data) {
+                cout << x <<"  ";
+        }
+        cout<<endl;
+
+}
+void insertionSort(vector<int> &data) {
+        int i, key, j;
+        int n = data.size();
+        for (i= 1; i < n; i++) {
+                key = data[i];
+                j=i - 1;
+                while (j >= 0 && data[j] > key) {
+                        data[j + 1] = data[j];
+                        j=j - 1;
+                }
+                data[j + 1] = key;
+        }
+}
+
+int main() {
+        vector<int> data{77, 200, 99, 57, 69, 45, 101, 67, 120, 132, 87, 157, 170, 12};
+
+        cout << "Unsorted array is: " << endl;
+        printArray(data);
+
+        insertionSort(data);
+
+        cout << "Sorted array is: " << endl;
+        printArray(data);
+
+        int x;
+        cout << "Enter the number that you would like to find: ";
+        cin >> x;
+
+        int index = binarySearch(data, x);
+
+        if(index == -1) {
+                cout << "The number " << x << " can not be found!" << endl;
+        } else {
+                cout << "The number " << x << " is found at index " << index << endl;
+        }
+
+}
