@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+double three (double x) {
+  double k=10;  // we set k = 10 miles. 
+  double a,b,c;
+  //double s=0;
+  b=k/(2*x-3);  // formula to calculate the distance for each travel
+ // s=s+b;
+//cout<<s<<endl;
+if(x==0){   //base case
+  //c=a+b;
+  //cout<<c<<endl;
+  return 0;
+}
+if(x==1){
+x--;   // decrement to base case
+return k;
+}
+/*else if(x==2){
+ a=k*2;
+cout<<a<<endl;
+     x--;
+  return three(x);
+ return x;
+}
+*/
+else if        // for batteries more than 2
+(x>=2) {
+cout<<b<<endl;
+x--;            // decrement to calculate the left over batteries. 
+return b+three(x); // calculate the total distance 
+}
+else
+return 0;
+}
+int main()
+{
+int n;
+cout << "insert the number of batteries " << endl;
+cin >> n;  // user inut for the numvber of batteries.
+cout<<" For each battery you can 10 miles."<<endl;
+cout <<"you will go total distance "<<  three(n) <<"  miles for "<<n<<"  battery"<<endl;
+//cout<<"total distance travel\n"<<three(n)<<endl;
+return 0;
+}
