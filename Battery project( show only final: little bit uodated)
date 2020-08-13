@@ -1,0 +1,43 @@
+#include<iostream>
+
+using namespace std;
+
+void function(double n){
+  double k=100;
+  double x,y,a;
+
+  if (n<=1){
+    y=k*n;
+   cout<<y<<endl;
+  }
+   else{
+     int count=0;
+     while(n>1){
+    
+
+      x=k/(2*n-3);
+      x+=
+     n--;
+    a=x;
+    cout<<a;
+    count++;
+     }
+    } 
+  }
+int main()
+{
+double x;
+cout << "how many batteries you have ? ";
+cin >> x; 
+cout << endl;
+if(x==0){
+cout << "If you have "<< x <<" batteries, you can go "<< x << " Km"<<endl;
+}
+else{
+  cout << "If you have "<< x <<" batteries, you can go \n";
+  function(x);
+cout<<"km\n";
+}
+
+return 0;
+}
